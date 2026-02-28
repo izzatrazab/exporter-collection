@@ -1,13 +1,10 @@
 <?php
 
+use App\Exports\LaravelSnappyPDF;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 
 Route::get('/example', function () {
-    $title = 'example';
-    return SnappyPdf::loadView('pdf.examples.example-pdf', [
-        'title' => $title
-    ])
-        ->inline($title . '.pdf');
+    return (new LaravelSnappyPDF(title: 'example', view: 'pdf.examples.example-pdf'))->response();
 })->name('example');
 
 Route::get('/example-2', function () {
@@ -26,22 +23,24 @@ Route::get('/example-2', function () {
 
 Route::get('/example-3', function () {
     $title = 'example-3';
+
     return SnappyPdf::loadView('pdf.examples.example-3', [
-        'title' => $title
+        'title' => $title,
     ])
         ->setOptions([
-            'margin-top'    => '20mm',
-            'margin-right'  => '20mm',
+            'margin-top' => '20mm',
+            'margin-right' => '20mm',
             'margin-bottom' => '20mm',
-            'margin-left'   => '20mm',
+            'margin-left' => '20mm',
         ])
-        ->inline($title . '.pdf');
+        ->inline($title.'.pdf');
 })->name('example-3');
 
 Route::get('/poster', function () {
     $title = 'poster';
+
     return SnappyPdf::loadView('pdf.examples.poster', [
-        'title' => $title
+        'title' => $title,
     ])
         ->setOptions([
             'margin-top' => '0',
@@ -49,6 +48,5 @@ Route::get('/poster', function () {
             'margin-bottom' => '0',
             'margin-left' => '0',
         ])
-        ->inline($title . '.pdf');
+        ->inline($title.'.pdf');
 })->name('poster');
-

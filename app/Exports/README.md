@@ -1,0 +1,1 @@
+After exporting many many many pdf, docx, pptx, xlsx. I strongly believe creating sepearate exporter class for specific exports is a good practice. Easier to maintain in the long run.
